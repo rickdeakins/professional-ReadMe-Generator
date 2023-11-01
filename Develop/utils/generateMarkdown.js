@@ -15,15 +15,36 @@ if (license in licenseMappings) {
   return svg;
 }
 
-
-
 // If there is no license, return an empty string
-function renderLicenseBadge(license) {}
-
-
+function renderLicenseBadge(license) {
+  if (!license) {
+    return '';
+  }
+}
 // TODO: Create a function that returns the license link
 // If there is no  license, return an empty string
-function renderLicenseLink(license) {}
+function renderLicenseLink(license) {
+  const licenseLink = {
+    MIT: 'https://opensource.org/license/mit/',
+    Apache: 'https://www.apache.org/licenses/LICENSE-2.0',
+    GPL: 'https://www.apache.org/licenses/LICENSE-2.0',
+    CreativeCommons: 'https://creativecommons.org/share-your-work/cclicenses/',
+    BSD:'https://opensource.org/license/bsd-3-clause/'
+  }
+  if (licenseLinks.hasOwnProperty(license)) {
+    // Return the corresponding license URL
+    return licenseLinks[license];
+  } else {
+    // If the license is not found, return an empty string
+    return '';
+  }
+
+
+}
+
+
+
+
 
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
