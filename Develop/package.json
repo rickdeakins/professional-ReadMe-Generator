@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "badge-maker": "^3.3.1",
+    "inquire": "^0.4.8",
     "inquirer": "^8.2.4"
   }
 }

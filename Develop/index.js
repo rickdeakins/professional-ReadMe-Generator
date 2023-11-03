@@ -2,7 +2,6 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('/Users/rickdeakins/bootcamp/Homework/professional-ReadMe-Generator/Develop/utils/generateMarkdown.js');
-const prompt = require('prompt');
 
 
 // TODO: Create an array of questions for user input
@@ -18,9 +17,10 @@ const questions = [
         message: 'Provide a description of the project.',
     },
     {
-        type: 'prompt',
+        type: 'list',
         name: 'license',
-        message: 'Choose a license for your document: MIT, Apache License 2.0, GNU General Public License (GPL) , Creative Commons License, BSD 3-Clause License
+        message: 'Choose a license for your document: MIT, Apache License 2.0, GNU General Public License (GPL) , Creative Commons License, BSD 3-Clause License.',
+        choices: ['MIT', 'Apache License 2.0', 'GNU General Public License (GPL)', 'Creative Commons License', 'BSD 3-Clause License'],
     },
     {
         type: 'input',
@@ -60,8 +60,8 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-    fs.writeFile('./output/README.md', generateMarkdown(userInput), (err) => {
+function writeToFile(data) {
+    fs.writeFile('README.md', generateMarkdown(data), (err) => {
         if (err){
             console.error(err);
         }else{
@@ -73,23 +73,7 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer.prompt(questions).then((answers) => {
         // Generate your README content based on user input
-        const readmeContent = generateMarkdown(answers);
-        // `# ${answers.heading}
-        
-        // ## Requirements
-        // ${answers.requirements}
-
-        // ## Recommendations
-        // ${answers.recommendations}
-
-        // ## Access
-        // ${answers.access}
-
-        // ## Configuration
-        // ${answers.config}
-
-        // ## Comments
-        // ${answers.comments}`;
+        writeToFile(answers);
 })}
 
 // Function call to initialize app
